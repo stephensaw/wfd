@@ -234,11 +234,10 @@ export default class Designer extends React.Component<DesignerProps, DesignerSta
       <LangContext.Provider value={{i18n,lang}}>
         <div className={styles.root}>
           { !isView && <ToolbarPanel ref={this.toolbarRef} /> }
-          <div>
-            { !isView && <ItemPanel ref={this.itemPanelRef} height={height}/> }
-            <div ref={this.pageRef} className={styles.canvasPanel} style={{height,width:isView?'100%':'70%',borderBottom:isView?0:null}}/>
+          <div className={styles.canvasContainer}>
+            { !isView && <ItemPanel ref={this.itemPanelRef} /> }
+            <div ref={this.pageRef} className={styles.canvasPanel} />
             { !isView && <DetailPanel ref={this.detailPanelRef}
-                                      height={height}
                                       model={selectedModel}
                                       readOnly={readOnly}
                                       users={users}

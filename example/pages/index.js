@@ -2,6 +2,7 @@ import Designer from "../../dist";
 import React, {Component} from "react";
 import {Button,Modal,Dropdown,Menu} from 'antd'
 import 'antd/dist/antd.less'
+import styles from "./index.less"
 class Demo extends Component {
   constructor(props){
     super(props);
@@ -86,12 +87,14 @@ class Demo extends Component {
     const height = 600;
     const { modalVisible,selectedLang } = this.state;
     return (
-      <div>
-        <Button style={{float:'right',marginTop:6,marginRight:6}} onClick={()=>this.wfdRef.current.graph.saveXML()}>导出XML</Button>
-        <Button style={{float:'right',marginTop:6,marginRight:6}} onClick={()=>this.handleModalVisible(true)}>查看流程图</Button>
-        <Dropdown overlay={this.langMenu} trigger={['click']}>
-          <Button style={{float:'right',marginTop:6,marginRight:10}} >语言</Button>
-        </Dropdown>
+      <div className={styles.app}>
+        <div className={styles['app-actionPanel']}>
+          <Button onClick={()=>this.wfdRef.current.graph.saveXML()}>导出XML</Button>
+          <Button onClick={()=>this.handleModalVisible(true)}>查看流程图</Button>
+          <Dropdown overlay={this.langMenu} trigger={['click']}>
+            <Button>语言</Button>
+          </Dropdown>
+        </div>
         <Designer ref={this.wfdRef} data={data} height={height} mode={"edit"} users={candidateUsers} groups={candidateGroups} lang={selectedLang}/>
         <Modal title="查看流程图" visible={modalVisible} onCancel={()=>this.handleModalVisible(false)} width={800} maskClosable={false} footer={null} destroyOnClose bodyStyle={{height}} >
           <Designer data={data1} height={height-40} isView />

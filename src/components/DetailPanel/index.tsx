@@ -19,7 +19,6 @@ import styles from "./index.less";
 import { IDefaultModel, ISelectData } from '../../types';
 
 export interface DetailProps{
-  height: number;
   model: IDefaultModel;
   users: ISelectData[];
   groups: ISelectData[];
@@ -28,9 +27,9 @@ export interface DetailProps{
   onChange: (...args: any[]) => any;
   readOnly: boolean;
 }
-const DetailPanel = forwardRef<any, DetailProps>(({height,model,users,groups,messageDefs,signalDefs,onChange,readOnly = false},ref)=>{
+const DetailPanel = forwardRef<any, DetailProps>(({model,users,groups,messageDefs,signalDefs,onChange,readOnly = false},ref)=>{
   return (
-    <div ref={ref} className={styles.detailPanel} style={{height}}>
+    <div ref={ref} className={styles.detailPanel}>
       { model.clazz === 'userTask' && <UserTaskDetail model={model} onChange={onChange} readOnly={readOnly} users={users} groups={groups}/>}
       { model.clazz === 'scriptTask' && <ScriptTaskDetail model={model} onChange={onChange} readOnly={readOnly} /> }
       { model.clazz === 'javaTask' && <JavaTaskDetail model={model} onChange={onChange} readOnly={readOnly} /> }
